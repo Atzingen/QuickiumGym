@@ -4,6 +4,7 @@ from scipy.spatial.distance import cosine
 import numpy as np
 import os
 import cv2
+from copy import deepcopy
 
 
 def get_img_array_formated(image_path, resize=(224, 224)):
@@ -112,7 +113,7 @@ def get_people_scores(face_array,
         reference,
         model)
 
-    people_name = scores_dict.keys()
+    people_name = deepcopy(scores_dict).keys()
     if threshold:
         for key in people_name:
             if scores_dict[key] < threshold:
@@ -121,6 +122,31 @@ def get_people_scores(face_array,
         person_name = max(scores_dict, key=scores_dict.get)
         return person_name
     return scores_dict
+
+
+def compare_two_faces(face_array_a,
+                      face_array_b,
+                      model):
+    """Compare two image faces and return if both are the same person
+
+    Args:
+        face_array_a (np.array): face_array_a
+        face_array_b (np.array): face_array_b
+        model (keras.model): VGGface model
+
+    Returns:
+        float: percent of match person
+    """
+    face_array_a = cv2.resize(face_array_a, (224, 224))
+    face_array_a = cv2.cvtColor(face_array_a, cv2.COLOR_RGB2BGR)
+    face_array_b = cv2.resize(face_array_b, (224, 224))
+    face_array_b = cv2.cvtColor(face_array_b, cv2.COLOR_RGB2BGR)
+    samples = np.asarray([face_array_a, face_array_b], 'float32')
+    samples = preprocess_input(samples, version=2)
+    model_scores = model.predict(samples)
+    score = cosine(model_scores[0], model_scores[1])
+    score = (100 - (100 * score))
+    return score
 
 
 if __name__ == '__main__':
