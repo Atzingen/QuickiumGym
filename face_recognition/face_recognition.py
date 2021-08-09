@@ -150,13 +150,14 @@ def compare_two_faces(face_array_a,
 
 
 if __name__ == '__main__':
-    face_path = 'frames/henrique/2/frame_103_[8.73100918].jpg'
-    template_path = 'gabarito'
+    face_path = 'b.jpg'
+    template_path = 'true_faces'
     model = VGGFace(
         model='resnet50',
         include_top=False,
         input_shape=(224, 224, 3),
         pooling='avg')
-    get_people_scores(
-        get_img_array_formated('frame_1_[8.93581806].jpg'),
-        template_path='true_faces', model=model)
+    score_dict = get_people_scores(
+        get_img_array_formated(face_path),
+        template_path=template_path, model=model)
+    print(score_dict)
