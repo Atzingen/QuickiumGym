@@ -1,1 +1,4 @@
-# QuickiumGym
+This project involves a solution developed by the Quickium team for OpenCV AI Competition 2021 in the “Health and fitness area”, the solution is a computer vision system for assistance and management of gym exercises. This solution has been developed to be applied on a gym establishment, but in the future the solution can be used by anyone at home for personal training. 
+The system integrates with the gym network, having access to all user training plans, data and history. Through an Artificial Intelligence model, the system is able to detect some key points (Human Pose Estimation) at the user body during exercises moviment, and with these points the software can infer wrong executed movements using the angles between body parts, amplitude of movement, inclination, and other factors that can be informed by physical professionals. 
+On the project the user is recognized by their face, get the training parameters, do the exercises while a software logic monitor their movements and at the end the user gets their score.
+
