@@ -6,7 +6,7 @@ The solution is a computer vision system for assistance and management of gym ex
 
 On a totem tha will be in front of the exercite area, the user is recognized by their face, get the training parameters, do the exercises while a software logic monitor their movements and at the end the user gets their score.
 
-More information on the submission [video](https://www.youtube.com/watch?v=LBdLJ0N0-lA)
+More information on the submission [video](https://www.youtube.com/watch?v=FV9vyA8N8rk)
 
 
 ## About this repository
